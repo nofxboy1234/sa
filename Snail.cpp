@@ -157,6 +157,7 @@ void Snail::Update(float dt) {
   sysLog.Log(p);
 
   // PhysicsActor::Update(dt);
+  // after snail_test tag
 }
 
 void Snail::Render() {
