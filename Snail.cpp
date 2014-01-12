@@ -31,7 +31,7 @@ Snail::Snail(Vector2 startingPosition) {
   // LoadSpriteFrames("Resources/Images/patch_01.png", GL_CLAMP, GL_NEAREST);
   // SetSpriteFrame(0);
 
-
+  PlaySpriteAnimation(0.1f, SAT_Loop, 0, 1);
   // SetSprite("Resources/Images/red_texture.png");
 
   SetDensity(2.0f);
@@ -144,32 +144,20 @@ Snail::Snail(Vector2 startingPosition) {
 // }
 
 
-void Snail::Update(float dt) {
+// void Snail::Update(float dt) {
 
-  PlaySpriteAnimation(0.1f, SAT_Loop, 0, 1);
+//   PlaySpriteAnimation(0.1f);
 
-  // int curFrame = GetSpriteFrame();
-  // String s = "dt: " + FloatToString(dt) + " Snail curFrame: " + IntToString(curFrame);
-  // sysLog.Log(s);
+//   bool playing = IsSpriteAnimPlaying();
+//   String p = "sprite anim playing: " + BoolToString(playing);
+//   sysLog.Log(p);
 
-  bool playing = IsSpriteAnimPlaying();
-  String p = "sprite anim playing: " + BoolToString(playing);
-  sysLog.Log(p);
+//   PhysicsActor::Update(dt);
+// }
 
-  // PhysicsActor::Update(dt);
-  // after snail_test tag
-  // snail_test2 tag
-  // after snail_test2
-  // snail_test3
-  // after snail_test3!
-  // snail_test4
-  // snail_test5
-  // snail_test6
-}
-
-void Snail::Render() {
-  PhysicsActor::Render();
-}
+// void Snail::Render() {
+//   PhysicsActor::Render();
+// }
 
 // void Snail::ProcessStompOn(PhysicsActor* other) {
 //   // sysLog.Log("Snail::ProcessStompOn");

@@ -8,8 +8,8 @@ public:
 
   // void SetUp();
 
-  virtual void Update(float dt);
-  virtual void Render();
+  // virtual void Update(float dt);
+  // virtual void Render();
   // virtual void ReceiveMessage(Message* message);
 
 private:
