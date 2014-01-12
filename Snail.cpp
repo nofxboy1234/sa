@@ -163,6 +163,7 @@ void Snail::Update(float dt) {
   // snail_test3
   // after snail_test3!
   // snail_test4
+  // snail_test5
 }
 
 void Snail::Render() {
