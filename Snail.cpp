@@ -159,6 +159,7 @@ void Snail::Update(float dt) {
   // PhysicsActor::Update(dt);
   // after snail_test tag
   // snail_test2 tag
+  // after snail_test2
 }
 
 void Snail::Render() {
