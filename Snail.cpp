@@ -9,7 +9,7 @@
 
 Snail::Snail(Vector2 startingPosition) {
   SetName("Snail");
-  // Tag("ground");
+  Tag("ground");
 
   SetPosition(startingPosition);
 
@@ -17,13 +17,19 @@ Snail::Snail(Vector2 startingPosition) {
 
   // int zoom = ((ShapeGameManager*)theWorld.GetGameManager())->WorldZoom;
   // SetSize((float)(zoom) * 0.5f, (float)(zoom) * 0.5f);
-  SetSize(3.0f, (3.0f * (31.0f / 54.0f) ) );
+  SetSize(10.0f, (10.0f * (31.0f / 54.0f) ) );
+
+  // SetShapeType(PhysicsActor::SHAPETYPE_BOX);
+  // SetDrawShape(ADS_Square);
+
   // SetColor(0.0f, 0.0f, 1.0f, 1.0f);
   SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-  LoadSpriteFrames("Resources/Images/snailWalk_01.png", GL_CLAMP, GL_NEAREST);
+  // SetSprite("Resources/Images/snailWalk_01.png");
+  LoadSpriteFrames("Resources/Images/snailWalk_001.png", GL_CLAMP, GL_NEAREST);
+  // LoadSpriteFrames("Resources/Images/player_1/p1_01.png", GL_CLAMP, GL_NEAREST);
   // LoadSpriteFrames("Resources/Images/patch_01.png", GL_CLAMP, GL_NEAREST);
-  SetSpriteFrame(0);
+  // SetSpriteFrame(0);
 
 
   // SetSprite("Resources/Images/red_texture.png");
@@ -31,7 +37,6 @@ Snail::Snail(Vector2 startingPosition) {
   SetDensity(2.0f);
   SetFriction(0.5f);
   SetRestitution(0.0f);
-  // SetShapeType(PhysicsActor::SHAPETYPE_BOX);
   SetFixedRotation(true);
   InitPhysics();
 
@@ -140,73 +145,18 @@ Snail::Snail(Vector2 startingPosition) {
 
 
 void Snail::Update(float dt) {
-//   b2Vec2 currentVelocity = GetBody()->GetLinearVelocity();
 
-// // #################
-//   if (MathUtil::FuzzyEquals(currentVelocity.x, 0.0f)) {
-//     SetSpriteFrame(0);
-//     _spriteFrameDelay = 0.0f;
-//   }
-//   else {
-//     if (!IsSpriteAnimPlaying()) {
-//       PlaySpriteAnimation(0.1f, SAT_Loop, 1, 11);
-//     }
-//   }
+  PlaySpriteAnimation(0.1f, SAT_Loop, 0, 1);
 
-//   if ((currentVelocity.x < 0.0f) && _facingRight) {
-//     FlipLeft();
-//   }
-//   else if ((currentVelocity.x > 0.0f) && !_facingRight) {
-//     FlipRight();
-//   }
-// // #################
+  // int curFrame = GetSpriteFrame();
+  // String s = "dt: " + FloatToString(dt) + " Snail curFrame: " + IntToString(curFrame);
+  // sysLog.Log(s);
 
+  bool playing = IsSpriteAnimPlaying();
+  String p = "sprite anim playing: " + BoolToString(playing);
+  sysLog.Log(p);
 
-//   float maxVel = theTuning.GetFloat("BlockyMaxSpeed");
-
-//   float xVector = 0.0f;
-//   if (theController.IsConnected()) {
-//     bool dpad_left_down;
-//     bool dpad_right_down;
-//     dpad_left_down = theController.IsButtonDown(XINPUT_GAMEPAD_DPAD_LEFT);
-//     dpad_right_down = theController.IsButtonDown(XINPUT_GAMEPAD_DPAD_RIGHT);
-
-//     if (dpad_left_down) {
-//       xVector = -1.0f;
-//     }
-//     else if (dpad_right_down) {
-//       xVector = 1.0f;
-//     }
-//     else if (dpad_left_down && dpad_right_down) {
-//       xVector = 0.0f;
-//     }
-//     else {
-//       xVector = theController.GetLeftThumbVec2().X;
-//     }
-//   }
-
-//   if (theInput.IsKeyDown(ANGEL_KEY_RIGHTARROW)) {
-//     xVector = 1.0f;
-//   }
-//   if (theInput.IsKeyDown(ANGEL_KEY_LEFTARROW)) {
-//     xVector = -1.0f;
-//   }
-//   if (theInput.IsKeyDown(ANGEL_KEY_RIGHTARROW) && theInput.IsKeyDown(ANGEL_KEY_LEFTARROW)) {
-//     xVector = 0.0f;
-//   }
-
-//   float desiredVelocity = xVector * maxVel;
-//   float velocityChange = desiredVelocity - currentVelocity.x;
-//   float impulse = GetBody()->GetMass() * velocityChange;
-//   ApplyLinearImpulse(Vector2(impulse, 0), Vector2());
-
-  PlaySpriteAnimation(0.1f, SAT_Loop, 0, 2);
-
-  int curFrame = GetSpriteFrame();
-  String s = "dt: " + FloatToString(dt) + " Snail curFrame: " + IntToString(curFrame);
-  sysLog.Log(s);
-
-  PhysicsActor::Update(dt);
+  // PhysicsActor::Update(dt);
 }
 
 void Snail::Render() {
@@ -227,12 +177,12 @@ void Snail::Render() {
 //   }
 // }
 
-void Snail::FlipLeft() {
-  SetUVs(Vector2(1.0f, 0.0f), Vector2(0.0f, 1.0f));
-  _facingRight = false;
-}
+// void Snail::FlipLeft() {
+//   SetUVs(Vector2(1.0f, 0.0f), Vector2(0.0f, 1.0f));
+//   _facingRight = false;
+// }
 
-void Snail::FlipRight() {
-  SetUVs(Vector2(0.0f, 0.0f), Vector2(1.0f, 1.0f));
-  _facingRight = true;
-}
+// void Snail::FlipRight() {
+//   SetUVs(Vector2(0.0f, 0.0f), Vector2(1.0f, 1.0f));
+//   _facingRight = true;
+// }

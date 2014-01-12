@@ -58,7 +58,8 @@ void Level_01::Start(float bgMusicVol) {
   _blocky->SetUp();
 
   // _snail = new Snail( Vector2(-130.0f, -8.0f) );
-  // theWorld.Add(_snail, 2);
+  _snail = new Snail( Vector2(-100.0f, 10.0f) );
+  theWorld.Add(_snail, 2);
 
   PowerUp* pwrUp = new PowerUp();
   pwrUp->SetPosition(-5.0f, 1.5f);

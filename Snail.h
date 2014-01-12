@@ -16,8 +16,8 @@ private:
   // void ProcessStompOn(PhysicsActor* other);
   // void ProcessUnStompFrom(PhysicsActor* other);
 
-  void FlipLeft();
-  void FlipRight();
+  // void FlipLeft();
+  // void FlipRight();
 
   bool _facingRight;
   b2Fixture* _footSensor;
