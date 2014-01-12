@@ -161,6 +161,7 @@ void Snail::Update(float dt) {
   // snail_test2 tag
   // after snail_test2
   // snail_test3
+  // after snail_test3!
 }
 
 void Snail::Render() {
