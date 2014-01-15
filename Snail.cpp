@@ -10,14 +10,13 @@
 Snail::Snail(Vector2 startingPosition) {
   SetName("Snail");
   Tag("ground");
+  moveNow = false;
 
   SetPosition(startingPosition);
 
-  _facingRight = true;
-
   // int zoom = ((ShapeGameManager*)theWorld.GetGameManager())->WorldZoom;
   // SetSize((float)(zoom) * 0.5f, (float)(zoom) * 0.5f);
-  SetSize(10.0f, (10.0f * (31.0f / 54.0f) ) );
+  SetSize(3.0f, (3.0f * (31.0f / 54.0f) ) );
 
   // SetShapeType(PhysicsActor::SHAPETYPE_BOX);
   // SetDrawShape(ADS_Square);
@@ -26,18 +25,18 @@ Snail::Snail(Vector2 startingPosition) {
   SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
   // SetSprite("Resources/Images/snailWalk_01.png");
-  LoadSpriteFrames("Resources/Images/snailWalk_001.png", GL_CLAMP, GL_NEAREST);
+  LoadSpriteFrames("Resources/Images/snailWalk_01.png", GL_CLAMP, GL_NEAREST);
   // LoadSpriteFrames("Resources/Images/player_1/p1_01.png", GL_CLAMP, GL_NEAREST);
   // LoadSpriteFrames("Resources/Images/patch_01.png", GL_CLAMP, GL_NEAREST);
   // SetSpriteFrame(0);
 
-  PlaySpriteAnimation(0.1f, SAT_Loop, 0, 1);
+  PlaySpriteAnimation(1.0f, SAT_Loop, 0, 1);
   // SetSprite("Resources/Images/red_texture.png");
 
-  SetDensity(2.0f);
-  SetFriction(0.5f);
-  SetRestitution(0.0f);
-  SetFixedRotation(true);
+  // SetDensity(2.0f);
+  // SetFriction(0.5f);
+  // SetRestitution(0.0f);
+  // SetFixedRotation(true);
   InitPhysics();
 
   b2PolygonShape sensorShape;
@@ -62,6 +61,30 @@ Snail::Snail(Vector2 startingPosition) {
   _leftSensor->SetUserData(this);
 
 
+  _facingRight = false;
+
+  // movement_01();
+  theSwitchboard.SubscribeTo(this, "snail_StartMoving");
+  theSwitchboard.SubscribeTo(this, "Snail_MovementFinished");
+
+  // theSwitchboard.Broadcast(new Message("snail_StartMoving"));
+}
+
+void Snail::movement_01() {
+  sysLog.Log("Snail::movement_01()");
+  // MoveTo(Vector2( (GetPosition().X - 15.0f), GetPosition().Y) , 3.0f, "Snail_MovementFinished");
+  MoveTo(Vector2(0.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
+  ChangeSizeTo(10.0f, 10.0f);
+}
+
+void Snail::FlipLeft() {
+  SetUVs(Vector2(0.0f, 0.0f), Vector2(1.0f, 1.0f));
+  _facingRight = true;
+}
+
+void Snail::FlipRight() {
+  SetUVs(Vector2(1.0f, 0.0f), Vector2(0.0f, 1.0f));
+  _facingRight = false;
 }
 
 // void Snail::SetUp() {
@@ -71,89 +94,27 @@ Snail::Snail(Vector2 startingPosition) {
   // theSwitchboard.SubscribeTo(this, "PowerUpDone");
 // }
 
-// void Snail::ReceiveMessage(Message* message) {
-//   String messageName = message->GetMessageName();
-//   // sysLog.Log("Snail::ReceiveMessage: " + messageName);
-
-//   if ((messageName == "CollisionStartWith" + GetName()) || (messageName == "CollisionEndWith" + GetName())) {
-//     TypedMessage<b2Contact*>* contactMessage = (TypedMessage<b2Contact*>*)message;
-//     b2Contact* contact = contactMessage->GetValue();
-//     PhysicsActor* other = NULL;
-//     b2Fixture* fixture = NULL;
-//     if (contact->GetFixtureA()->GetUserData() == this) {
-//       // I hit something else
-//       other = (PhysicsActor*)contact->GetFixtureB()->GetBody()->GetUserData();
-//       fixture = contact->GetFixtureA();
-//     }
-//     else {
-//       // Something else hit me
-//       other = (PhysicsActor*)contact->GetFixtureA()->GetBody()->GetUserData();
-//       fixture = contact->GetFixtureB();
-//     }
-
-//     if (other == NULL) {
-//       return;
-//     }
-
-//     if (fixture == _footSensor) {
-//       if (messageName == "CollisionStartWith" + GetName()) {
-//         ProcessStompOn(other);
-//       }
-//       else {
-//         ProcessUnStompFrom(other);
-//       }
-//     }
-
-//     if (fixture == _headSensor) {
-//       if (messageName == "CollisionStartWith" + GetName()) {
-//         if (other->IsTagged("block")) {
-//           if (theSound.IsPlaying(_jumpPlaying)) {
-//             theSound.StopSound(_jumpPlaying);
-//           }
-//           ((FloatingBlock*)other)->Bonk();
-//         }
-//       }
-//     }
-
-//     if ( (messageName == "CollisionStartWith" + GetName()) && (other->IsTagged("powerup")) ) {
-//       PowerMeUp();
-//       other->Destroy();
-//     }
-
-//     // Add orb to inventory
-//     if ( (messageName == "CollisionStartWith" + GetName()) && (other->IsTagged("orb")) ) {
-//       collectOrb(other);
-//       other->Destroy();
-//     }
-//   }
-//   else if (messageName == "Jump") {
-//     if (CanJump()) {
-//       Jump();
-//     }
-//   }
-//   else if (messageName == "PowerUpDone") {
-//     // LoadSpriteFrames("Resources/Images/dudette_01.png", GL_CLAMP, GL_NEAREST);
-//     // LoadSpriteFrames("Resources/Images/patch_powerup_01.png", GL_CLAMP, GL_NEAREST);
-//     float poweredJumpHeight = theTuning.GetFloat("BlockyPoweredJumpHeight");
-//     theTuning.SetFloat("BlockyJumpHeight", poweredJumpHeight);
-//     // theWorld.SetBackgroundColor(Color::FromInts(0, 191, 255));
-//     // SetColor(0.0f, 1.0f, 0.0f, 1.0f);
-//     // theWorld.ResumePhysics();
-//     _poweringUp = false;
-//   }
-// }
+void Snail::ReceiveMessage(Message* message) {
+  sysLog.Log("Snail::ReceiveMessage");
+  if (message->GetMessageName() == "snail_StartMoving") {
+    sysLog.Log("Snail::ReceiveMessage snail_StartMoving");
+    // MoveTo(Vector2(5.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
+    moveNow = true;
+  }
+}
 
 
-// void Snail::Update(float dt) {
+void Snail::Update(float dt) {
 
-//   PlaySpriteAnimation(0.1f);
+  // movement_01();
+  if (moveNow) {
+    float curPosX = GetPosition().X;
+    float curPosY = GetPosition().Y;
+    SetPosition(curPosX += 1, curPosY);
+  }
 
-//   bool playing = IsSpriteAnimPlaying();
-//   String p = "sprite anim playing: " + BoolToString(playing);
-//   sysLog.Log(p);
-
-//   PhysicsActor::Update(dt);
-// }
+  PhysicsActor::Update(dt);
+}
 
 // void Snail::Render() {
 //   PhysicsActor::Render();

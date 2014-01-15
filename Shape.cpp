@@ -19,11 +19,13 @@ Shape::Shape(Vector2 startingPosition) {
 
   int zoom = ((ShapeGameManager*)theWorld.GetGameManager())->WorldZoom;
   // SetSize((float)(zoom) * 0.5f, (float)(zoom) * 0.5f);
-  SetSize(3.0f, 3.0f * 1.39);
+  SetSize(3.0f, ((3.0f * 1.1f) * (106.0f / 60.0f)) );
   // SetColor(0.0f, 0.0f, 1.0f, 1.0f);
   SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-  LoadSpriteFrames("Resources/Images/player_1/p1_01.png", GL_CLAMP, GL_NEAREST);
+  // LoadSpriteFrames("Resources/Images/player_1/p1_01.png", GL_CLAMP, GL_NEAREST);
+  // LoadSpriteFrames("Resources/Images/shapey/Shapey_01.png", GL_CLAMP, GL_NEAREST);
+  LoadSpriteFrames("Resources/Images/Sprite_shapeyV01/Untitled-3_frame_0.png", GL_CLAMP, GL_NEAREST);
   // LoadSpriteFrames("Resources/Images/patch_01.png", GL_CLAMP, GL_NEAREST);
   SetSpriteFrame(0);
 
@@ -160,16 +162,18 @@ void Shape::Update(float dt) {
 
 // #################
   if (! _onGround) {
-    SetSpriteFrame(12);
+    // SetSpriteFrame(12);
+    SetSpriteFrame(39);
     _spriteFrameDelay = 0.0f;
   }
   else if (MathUtil::FuzzyEquals(currentVelocity.x, 0.0f)) {
-    SetSpriteFrame(0);
+    SetSpriteFrame(10);
     _spriteFrameDelay = 0.0f;
   }
   else {
     if (!IsSpriteAnimPlaying()) {
-      PlaySpriteAnimation(0.1f, SAT_Loop, 1, 11);
+      // PlaySpriteAnimation(0.1f, SAT_Loop, 1, 11);
+      PlaySpriteAnimation(0.02f, SAT_Loop, 10, 30);
     }
   }
 

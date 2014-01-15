@@ -57,9 +57,10 @@ void Level_01::Start(float bgMusicVol) {
   theWorld.Add(_blocky, 2);
   _blocky->SetUp();
 
-  // _snail = new Snail( Vector2(-130.0f, -8.0f) );
-  _snail = new Snail( Vector2(-100.0f, 10.0f) );
-  theWorld.Add(_snail, 2);
+  // _snail = new Snail( Vector2(-50.0f, -8.0f) );
+  // theWorld.Add(_snail, 2);
+  // theSwitchboard.Broadcast(new Message("snail_StartMoving"));
+  // _snail->MoveTo(Vector2(0.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
 
   PowerUp* pwrUp = new PowerUp();
   pwrUp->SetPosition(-5.0f, 1.5f);
@@ -161,6 +162,8 @@ void Level_01::Start(float bgMusicVol) {
   ground->SetName("Ground");
   theWorld.Add(ground, 2);
 
+  // theSwitchboard.SubscribeTo(this, "snail_StartMoving");
+
   SA_Screen::Start(bgMusicVol);
 
 }
@@ -191,3 +194,10 @@ void Level_01::Update(float dt) {
 }
 
 void Level_01::Render() {}
+
+// void Level_01::ReceiveMessage(Message* message) {
+//   if (message->GetMessageName() == "snail_StartMoving") {
+//     sysLog.Log("Level_01::ReceiveMessage snail_StartMoving");
+//     _snail->MoveTo(Vector2(0.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
+//   }
+// }

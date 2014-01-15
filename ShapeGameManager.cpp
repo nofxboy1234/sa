@@ -31,6 +31,7 @@ ShapeGameManager::ShapeGameManager() {
 
   theSwitchboard.SubscribeTo(this, "start_SA");
   theSwitchboard.SubscribeTo(this, "exit_SA");
+  // theSwitchboard.SubscribeTo(this, "snail_StartMoving");
 
   SA_TitleScreen* titleScreen = new SA_TitleScreen();
   titleScreen->_imgPath = new String("Resources/Images/SA-01.png");
@@ -77,6 +78,10 @@ void ShapeGameManager::ReceiveMessage(Message* message) {
     sysLog.Log("ShapeGameManager::ReceiveMessage ExitGame");
     exit_SA();
   }
+
+  // if (message->GetMessageName() == "snail_StartMoving") {
+  //   sysLog.Log("ShapeGameManager::ReceiveMessage snail_StartMoving");
+  // }
 }
 
 void ShapeGameManager::start_SA() {

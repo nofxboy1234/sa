@@ -12,6 +12,7 @@ public:
   virtual void Start(float bgMusicVol=1.0f);
   virtual void Update(float dt);
   virtual void Render();
+  // virtual void ReceiveMessage(Message* message);
 
 private:
   Shape* _blocky;
