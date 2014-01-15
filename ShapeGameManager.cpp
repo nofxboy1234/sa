@@ -34,7 +34,7 @@ ShapeGameManager::ShapeGameManager() {
   // theSwitchboard.SubscribeTo(this, "snail_StartMoving");
 
   SA_TitleScreen* titleScreen = new SA_TitleScreen();
-  titleScreen->_imgPath = new String("Resources/Images/SA-01.png");
+  titleScreen->_imgPath = new String("Resources/Images/SA-01_720.png");
   titleScreen->_bgMusicPath = new String("Resources/Sounds/Circlerun_ZEQ2_Select_Your_Game_Mode.mp3");
   _screens.push_back(titleScreen);
 
