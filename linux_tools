@@ -1,0 +1,7 @@
+bash
+sublime_text_2
+gcc, g++
+make
+gdb
+valgrind, kcachegrind
+git
