@@ -4,7 +4,7 @@
 #include "ShapeGameManager.h"
 
 PowerUp::PowerUp() {
-  int zoom = ((ShapeGameManager*)theWorld.GetGameManager())->WorldZoom * 0.75f;
+  // int zoom = ((ShapeGameManager*)theWorld.GetGameManager())->WorldZoom * 0.75f;
   SetSize(1.0f);
 
   // LoadSpriteFrames("Resources/Images/bone_powerup_01.png", GL_CLAMP, GL_NEAREST);

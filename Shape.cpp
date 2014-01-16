@@ -17,7 +17,7 @@ Shape::Shape(Vector2 startingPosition) {
   _facingRight = true;
   _poweringUp = false;
 
-  int zoom = ((ShapeGameManager*)theWorld.GetGameManager())->WorldZoom;
+  // int zoom = ((ShapeGameManager*)theWorld.GetGameManager())->WorldZoom;
   // SetSize((float)(zoom) * 0.5f, (float)(zoom) * 0.5f);
   SetSize(3.0f, ((3.0f * 1.1f) * (106.0f / 60.0f)) );
   // SetColor(0.0f, 0.0f, 1.0f, 1.0f);
