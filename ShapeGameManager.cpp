@@ -33,13 +33,10 @@ ShapeGameManager::ShapeGameManager() {
   theSwitchboard.SubscribeTo(this, "exit_SA");
   // theSwitchboard.SubscribeTo(this, "snail_StartMoving");
 
-  SA_TitleScreen* titleScreen = new SA_TitleScreen();
-  titleScreen->_imgPath = new String("Resources/Images/SA-01_720.png");
-  titleScreen->_bgMusicPath = new String("Resources/Sounds/Circlerun_ZEQ2_Select_Your_Game_Mode.mp3");
+  SA_TitleScreen* titleScreen = new SA_TitleScreen("Resources/Images/SA-01_720.png", "Resources/Sounds/Circlerun_ZEQ2_Select_Your_Game_Mode.mp3");
   _screens.push_back(titleScreen);
 
-  Level_01* level01 = new Level_01();
-  level01->_bgMusicPath = new String("Resources/Sounds/TownTheme.mp3");
+  Level_01* level01 = new Level_01("Resources/Sounds/TownTheme.mp3");
   _screens.push_back(level01);
 
   unsigned int startingIndex = 0;

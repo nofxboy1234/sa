@@ -7,7 +7,7 @@
 
 class Level_01 : public SA_Screen {
 public:
-  Level_01();
+  Level_01(const String& musicPath);
 
   virtual void Start(float bgMusicVol=1.0f);
   virtual void Update(float dt);

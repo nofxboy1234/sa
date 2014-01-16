@@ -37,20 +37,14 @@
 //   // StartScreen::_choiceBox = theUI.ShowChoiceBox("Welcome to Shape Adventure", labels, ChoiceMade);
 // }
 
-SA_Screen::SA_Screen() {
+SA_Screen::SA_Screen(const String& musicPath) {
+  _bgMusicPath = musicPath;
 }
 
 void SA_Screen::Start(float bgMusicVol) {
-  if (_imgPath != NULL) {
-    FullScreenActor* fsa = new FullScreenActor();
-    fsa->SetSprite(*_imgPath);
-    theWorld.Add(fsa);
-    _objects.push_back(fsa);
-  }
-  if (_bgMusicPath != NULL) {
-    _backgroundMusicSample = theSound.LoadSample(*_bgMusicPath, true);
-    _backgroundMusicSound = theSound.PlaySound(_backgroundMusicSample, bgMusicVol, true);
-  }
+
+  _backgroundMusicSample = theSound.LoadSample(_bgMusicPath, true);
+  _backgroundMusicSound = theSound.PlaySound(_backgroundMusicSample, bgMusicVol, true);
 }
 
 void SA_Screen::Stop() {
@@ -84,7 +78,5 @@ void SA_Screen::removeUiElements() {
 }
 
 void SA_Screen::stopMusic() {
-  if (_bgMusicPath != NULL) {
-    theSound.StopSound(_backgroundMusicSound);
-  }
+  theSound.StopSound(_backgroundMusicSound);
 }

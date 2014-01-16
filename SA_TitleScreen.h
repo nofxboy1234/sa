@@ -4,7 +4,7 @@
 
 class SA_TitleScreen : public SA_Screen {
 public:
-  SA_TitleScreen();
+  SA_TitleScreen(const String& imgPath, const String& musicPath);
   virtual void Start(float bgMusicVol=1.0f);
 
 
@@ -22,5 +22,6 @@ private:
   AngelUIHandle _startButton;
   AngelUIHandle _exitButton;
 
+  String _imgPath;
 
 };

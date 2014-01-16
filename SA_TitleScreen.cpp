@@ -1,6 +1,17 @@
 #include "stdafx.h"
 #include "SA_TitleScreen.h"
 
+SA_TitleScreen::SA_TitleScreen(const String& imgPath, const String& musicPath) {
+  _imgPath = imgPath;
+
+  FullScreenActor* fsa = new FullScreenActor();
+  fsa->SetSprite(_imgPath);
+  theWorld.Add(fsa);
+  _objects.push_back(fsa);
+
+  _bgMusicPath = musicPath;
+}
+
 // AngelUIHandle StartScreen::_choiceBox = NULL;
 
 // void ChoiceMade(int choice) {
@@ -31,10 +42,6 @@ void exitButtonPressed() {
   theSwitchboard.Broadcast(new Message("exit_SA"));
 }
 
-SA_TitleScreen::SA_TitleScreen() {
-
-
-}
 
 void SA_TitleScreen::Start(float bgMusicVol) {
 

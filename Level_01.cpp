@@ -6,7 +6,8 @@
 #include "Smoke.h"
 // #include "Collectible.h"
 
-Level_01::Level_01() {
+Level_01::Level_01(const String& musicPath) {
+  _bgMusicPath = musicPath;
 }
 
 void Level_01::Start(float bgMusicVol) {
