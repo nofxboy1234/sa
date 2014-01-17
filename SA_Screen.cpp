@@ -4,10 +4,10 @@
 // AngelUIHandle StartScreen::_choiceBox = NULL;
 
 // void ChoiceMade(int choice) {
-//   // std::ostringstream ss;
-//   // ss << choice;
-//   // std::string s = "choice: " + ss.str();
-//   // sysLog.Log(s);
+//   std::ostringstream ss;
+//   ss << choice;
+//   std::string s = "choice: " + ss.str();
+//   sysLog.Log(s);
 
 //   String out = "";
 //   // After putting an ImagePanel with an image in it into the WindowControl,
@@ -64,9 +64,13 @@ void SA_Screen::Stop() {
   _objects.clear();
 }
 
-void SA_Screen::Update(float dt) {}
+void SA_Screen::Update(float dt) {
+  Renderable::Update(dt);
+}
 
-void SA_Screen::Render() {}
+void SA_Screen::Render() {
+  Renderable::Render();
+}
 
 void SA_Screen::removeUiElements() {
   std::vector<AngelUIHandle>::iterator it = _elements.begin();

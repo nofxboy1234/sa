@@ -58,10 +58,23 @@ void Level_01::Start(float bgMusicVol) {
   theWorld.Add(_blocky, 2);
   _blocky->SetUp();
 
-  // _snail = new Snail( Vector2(-50.0f, -8.0f) );
-  // theWorld.Add(_snail, 2);
-  // theSwitchboard.Broadcast(new Message("snail_StartMoving"));
-  // _snail->MoveTo(Vector2(0.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
+  _snail = new Snail( Vector2(-50.0f, -8.0f) );
+  theWorld.Add(_snail, 2);
+  _snail->SetUp();
+
+  // String snail_messages;
+  // snail_messages = "a";
+  // String a = " " & "a";
+
+  StringSet snail_messages = theSwitchboard.GetSubscriptionsFor(_snail);
+  int snail_messages_size = snail_messages.size();
+  sysLog.Log("snail messages (" + IntToString(snail_messages_size) + "): ");
+  StringSet::iterator pos;
+  for (pos = snail_messages.begin(); pos != snail_messages.end(); ++pos) {
+    String msg = *pos;
+    sysLog.Log(msg + "\n");
+  }
+  theSwitchboard.Broadcast(new Message("snail_StartMoving"));
 
   PowerUp* pwrUp = new PowerUp();
   pwrUp->SetPosition(-5.0f, 1.5f);
@@ -192,9 +205,10 @@ void Level_01::Update(float dt) {
       }
     }
   }
+  SA_Screen::Update(dt);
 }
 
-void Level_01::Render() {}
+// void Level_01::Render() {}
 
 // void Level_01::ReceiveMessage(Message* message) {
 //   if (message->GetMessageName() == "snail_StartMoving") {

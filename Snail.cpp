@@ -9,8 +9,8 @@
 
 Snail::Snail(Vector2 startingPosition) {
   SetName("Snail");
-  Tag("ground");
-  moveNow = false;
+  // Tag("ground");
+  _moveNow = false;
 
   SetPosition(startingPosition);
 
@@ -37,6 +37,7 @@ Snail::Snail(Vector2 startingPosition) {
   // SetFriction(0.5f);
   // SetRestitution(0.0f);
   // SetFixedRotation(true);
+
   InitPhysics();
 
   b2PolygonShape sensorShape;
@@ -64,10 +65,14 @@ Snail::Snail(Vector2 startingPosition) {
   _facingRight = false;
 
   // movement_01();
-  theSwitchboard.SubscribeTo(this, "snail_StartMoving");
-  theSwitchboard.SubscribeTo(this, "Snail_MovementFinished");
+  // theSwitchboard.SubscribeTo(this, "Snail_MovementFinished");
 
   // theSwitchboard.Broadcast(new Message("snail_StartMoving"));
+}
+
+void Snail::SetUp() {
+  theSwitchboard.SubscribeTo(this, "snail_StartMoving");
+
 }
 
 void Snail::movement_01() {
@@ -99,22 +104,21 @@ void Snail::ReceiveMessage(Message* message) {
   if (message->GetMessageName() == "snail_StartMoving") {
     sysLog.Log("Snail::ReceiveMessage snail_StartMoving");
     // MoveTo(Vector2(5.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
-    moveNow = true;
+    _moveNow = true;
   }
 }
 
 
-void Snail::Update(float dt) {
+// void Snail::Update(float dt) {
 
-  // movement_01();
-  if (moveNow) {
-    float curPosX = GetPosition().X;
-    float curPosY = GetPosition().Y;
-    SetPosition(curPosX += 1, curPosY);
-  }
+//   if (_moveNow) {
+//     float curPosX = GetPosition().X;
+//     float curPosY = GetPosition().Y;
+//     SetPosition(curPosX += 1, curPosY);
+//   }
 
-  PhysicsActor::Update(dt);
-}
+//   PhysicsActor::Update(dt);
+// }
 
 // void Snail::Render() {
 //   PhysicsActor::Render();

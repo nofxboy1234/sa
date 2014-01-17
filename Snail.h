@@ -8,9 +8,10 @@ public:
 
   // void SetUp();
 
-  virtual void Update(float dt);
-  // virtual void Render();
+  virtual void Update(float dt) {};
+  virtual void Render() {};
   virtual void ReceiveMessage(Message* message);
+  void SetUp();
 
 private:
   // void ProcessStompOn(PhysicsActor* other);
@@ -20,7 +21,7 @@ private:
   void FlipRight();
 
   void movement_01();
-  bool moveNow;
+  bool _moveNow;
 
   bool _facingRight;
   b2Fixture* _footSensor;
