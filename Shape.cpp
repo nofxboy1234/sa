@@ -300,13 +300,11 @@ void Shape::collectOrb(PhysicsActor* orb) {
 }
 
 void Shape::FlipLeft() {
-  sysLog.Log("Shape::FlipLeft");
   SetUVs(Vector2(1.0f, 0.0f), Vector2(0.0f, 1.0f));
   _facingRight = false;
 }
 
 void Shape::FlipRight() {
-  sysLog.Log("Shape::FlipRight");
   SetUVs(Vector2(0.0f, 0.0f), Vector2(1.0f, 1.0f));
   _facingRight = true;
 }
