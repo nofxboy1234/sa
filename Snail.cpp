@@ -102,7 +102,7 @@ void Snail::FlipRight() {
 void Snail::ReceiveMessage(Message* message) {
   sysLog.Log("Snail::ReceiveMessage");
   if (message->GetMessageName() == "snail_StartMoving") {
-    sysLog.Log("Snail::ReceiveMessage snail_StartMoving");
+    // sysLog.Log("Snail::ReceiveMessage snail_StartMoving");
     // MoveTo(Vector2(5.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
     _moveNow = true;
   }
