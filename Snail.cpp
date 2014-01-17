@@ -33,10 +33,10 @@ Snail::Snail(Vector2 startingPosition) {
   PlaySpriteAnimation(1.0f, SAT_Loop, 0, 1);
   // SetSprite("Resources/Images/red_texture.png");
 
-  // SetDensity(2.0f);
-  // SetFriction(0.5f);
-  // SetRestitution(0.0f);
-  // SetFixedRotation(true);
+  SetDensity(0.1f);
+  SetFriction(0.8f);
+  SetRestitution(0.0f);
+  SetFixedRotation(true);
 
   InitPhysics();
 
@@ -106,22 +106,24 @@ void Snail::ReceiveMessage(Message* message) {
     // MoveTo(Vector2(5.0f, 0.0f) , 2.0f, "Snail_MovementFinished");
     _moveNow = true;
   }
+
+  PhysicsActor::ReceiveMessage(message);
 }
 
 
 // void Snail::Update(float dt) {
 
-//   if (_moveNow) {
-//     float curPosX = GetPosition().X;
-//     float curPosY = GetPosition().Y;
-//     SetPosition(curPosX += 1, curPosY);
-//   }
+//   // if (_moveNow) {
+//   //   float curPosX = GetPosition().X;
+//   //   float curPosY = GetPosition().Y;
+//   //   SetPosition(curPosX += 1, curPosY);
+//   // }
 
 //   PhysicsActor::Update(dt);
 // }
 
 // void Snail::Render() {
-//   PhysicsActor::Render();
+//   // PhysicsActor::Render();
 // }
 
 // void Snail::ProcessStompOn(PhysicsActor* other) {

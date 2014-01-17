@@ -29,6 +29,8 @@ window = {
 platform = {
   class = "PhysicsActor",
   density = 0.0,
+  friction = 0.0,
+  restitution = 0.0,
   size = {6.0, 2.0},
   tag = "ground, block",
 }

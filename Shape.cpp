@@ -31,11 +31,11 @@ Shape::Shape(Vector2 startingPosition) {
 
   // SetSprite("Resources/Images/red_texture.png");
 
-  SetDensity(2.0f);
-  SetFriction(0.0f);
+  SetDensity(0.1f);
+  SetFriction(0.1f);
   SetRestitution(0.0f);
-  // SetShapeType(PhysicsActor::SHAPETYPE_BOX);
   SetFixedRotation(true);
+
   InitPhysics();
 
   b2PolygonShape sensorShape;
@@ -300,11 +300,13 @@ void Shape::collectOrb(PhysicsActor* orb) {
 }
 
 void Shape::FlipLeft() {
+  sysLog.Log("Shape::FlipLeft");
   SetUVs(Vector2(1.0f, 0.0f), Vector2(0.0f, 1.0f));
   _facingRight = false;
 }
 
 void Shape::FlipRight() {
+  sysLog.Log("Shape::FlipRight");
   SetUVs(Vector2(0.0f, 0.0f), Vector2(1.0f, 1.0f));
   _facingRight = true;
 }
